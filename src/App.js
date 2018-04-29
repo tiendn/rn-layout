@@ -1,6 +1,7 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * 
+ * https://github.com/tiendn/rn-layout
+ * @author: Dao Nam Tien
  * @flow
  */
 
@@ -11,7 +12,6 @@ import {
     Text,
     View,
     Animated,
-    // SegmentedControlIOS,
     Dimensions,
     StatusBar,
     TouchableOpacity,
@@ -20,407 +20,11 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Card } from './components';
 import { Colors, Font } from './theme';
-
-const instructions = Platform.select({
-    ios: 'Press Cmd+R to reload,\n' +
-        'Cmd+D or shake for dev menu',
-    android: 'Double tap R on your keyboard to reload,\n' +
-        'Shake or press menu button for dev menu',
-});
+import data from './data/data.json';
 
 type Props = {};
 
 const { height, width } = Dimensions.get("screen");
-
-const data = [
-    {
-        order_number: 'SP-21',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-21.1',
-                quantity: 3,
-                name: "Yogust",
-                checked: true,
-                option: "No Sugar"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-22',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-22.1',
-                quantity: 2,
-                name: "Yogus Potato Mango asdkha",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-1',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-1.1',
-                quantity: 3,
-                name: "Yogust",
-                checked: true,
-                option: "No Sugar"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-2',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-2.1',
-                quantity: 2,
-                name: "Yogus Potato Mango asdkha",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-3',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-3.1',
-                quantity: 3,
-                name: "Yogust",
-                checked: true,
-                option: "No Sugar"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-4',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-4.1',
-                quantity: 2,
-                name: "Yogus Potato Mango",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-5',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-5.1',
-                quantity: 3,
-                name: "Yogust",
-                checked: true,
-                option: "No Sugar"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-6',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-6.1',
-                quantity: 2,
-                name: "Yogus Potato Mango asdkha",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-7',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-7.1',
-                quantity: 3,
-                name: "Yogust",
-                checked: true,
-                option: "No Sugar"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-8',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-8.1',
-                quantity: 2,
-                name: "Yogus Potato Mango asdkha",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-9',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-9.1',
-                quantity: 3,
-                name: "Yogust",
-                checked: true,
-                option: "No Sugar"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-10',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-2.1',
-                quantity: 2,
-                name: "Yogus Potato Mango asdkha",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-23',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-23.1',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.2',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.3',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.4',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.5',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.6',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.7',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.8',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.9',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.10',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.11',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.12',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.13',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-23.14',
-                quantity: 3,
-                name: "Yogust"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-24',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-24.1',
-                quantity: 3,
-                name: "Yogust",
-                checked: true,
-                option: "No Sugar"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-25',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-25.1',
-                quantity: 2,
-                name: "Yogus Potato Mango asdkha",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-27',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-27.1',
-                quantity: 2,
-                name: "Yogus Potato Mango asdkha",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-28',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-28.1',
-                quantity: 2,
-                name: "Yogus Potato Mango asdkha",
-                option: "Large"
-            }
-        ]
-    },
-    {
-        order_number: 'SP-26',
-        received_time: 1524989637934,
-        staff_name: "John Smith",
-        number_of_guests: 3,
-        menu: [
-            {
-                id: 'SP-26.1',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.2',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.3',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.4',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.5',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.6',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.7',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.8',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.9',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.10',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.11',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.12',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.13',
-                quantity: 3,
-                name: "Yogust"
-            },
-            {
-                id: 'SP-26.14',
-                quantity: 3,
-                name: "Yogust"
-            }
-        ]
-    }
-]
 
 export default class App extends Component<Props> {
 
@@ -430,7 +34,6 @@ export default class App extends Component<Props> {
             tabIndex: 1,
             pageIndex: 0,
             translateX: new Animated.Value(0),
-            // pageIndex: 
         }
     }
 
@@ -439,6 +42,7 @@ export default class App extends Component<Props> {
             this.setAnimation();
     }
 
+    // Set animation
     setAnimation() {
         Animated.spring(
             this.state.translateX,
@@ -453,13 +57,13 @@ export default class App extends Component<Props> {
     onHeaderChange(tabIndex) {
         this.setState({ tabIndex });
     }
-
+    // Next page
     onNext() {
         this.setState((prevState) => ({
             pageIndex: prevState.pageIndex + 1
         }));
     }
-
+    // Previous page
     onPrev() {
         this.setState((prevState) => ({
             pageIndex: prevState.pageIndex - 1
@@ -523,7 +127,7 @@ const HeaderTab = ({ numberOfCompletedOrders, numberOfCurrentOrders, onChange, o
         {pageIndex !== 0 && <HeaderButton onPress={onPrev} title="Prev" iconName="ios-arrow-back" isLeft />}
         <SegmentControl key={`tab0`} radiusLeft active={tabIndex === 0} titleSegmentControl={`Completed Orders (${numberOfCompletedOrders})`} onPress={() => onChange(0)} />
         <SegmentControl key={`tab1`} radiusRight active={tabIndex === 1} titleSegmentControl={`Current Orders (${numberOfCurrentOrders})`} onPress={() => onChange(1)} />
-        <HeaderButton onPress={onNext} title="Next" iconName="ios-arrow-forward" />
+        {(pageIndex + 1) * 8 < data.length && <HeaderButton onPress={onNext} title="Next" iconName="ios-arrow-forward" />}
     </View>
 )
 

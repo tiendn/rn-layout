@@ -33,8 +33,8 @@ export const Card = ({ data, firstLeft, lastRight }) => (
 
 const styles = StyleSheet.create({
 	cardContainer: {
-		minHeight: (height - 20 - 50 - 30) * 0.5,
-		width: (width - 100) / 4,
+		minHeight: (height - 20 - 50 - 30) * 0.5, // 20: status height, 50: tabbar height, 30: space vertical between card.
+		width: (width - 100) / 4, // 100: space horizontal between card, 4: number of card in a row
 		marginHorizontal: 10,
 		marginBottom: 10
 	},
